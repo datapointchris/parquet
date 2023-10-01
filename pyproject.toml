@@ -1,0 +1,70 @@
+[tool.poetry]
+name = "parquet"
+version = "0.1.0"
+description = ""
+authors = ["Chris Birch <datapointchris@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.25.2"
+ipywidgets = "^8.1.1"
+black = "^23.9.1"
+flake8 = "^6.1.0"
+pytest = "^7.4.2"
+pre-commit = "^3.4.0"
+pytest-cov = "^4.1.0"
+bandit = "^1.7.5"
+mypy = "^1.5.1"
+isort = "^5.12.0"
+
+# ---------- Configurations ---------- #
+
+[tool.bandit]
+exclude_dirs = ["tests", "scripts"]
+skips = ["B311"]
+
+[tool.black]
+line-length = 120
+skip-string-normalization = true
+exclude = '''
+(
+/alembic
+| .git
+| .mypy_cache
+| .venv
+| build
+| dist
+)
+'''
+
+[tool.codespell]
+skip = '*.css.map,*.ipynb'
+ignore-words-list = "astroid,aNULL,ANULL,anull"
+check-filenames = true
+# count = ""
+# quiet-level = 3
+
+[tool.isort]
+line_length = 120
+profile = "black"
+atomic = true
+skip = [".gitignore"]
+extend_skip = [".md", ".json"]
+
+[tool.mypy]
+pretty = true
+ignore_missing_imports = true
+# strict = true
+allow_untyped_defs = true
+check_untyped_defs = false
+warn_return_any = false
+
+[tool.refurb]
+enable_all = true
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
